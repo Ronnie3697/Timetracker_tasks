@@ -12,9 +12,13 @@
       <form>
         <div class="form-row">
           <label class="form-label">Název úkolu</label>
-          <input class="form-input writing" required />
+          <input
+            type="text"
+            class="form-input writing input-task-name"
+            required
+          />
           <label class="form-label">Název práce</label>
-          <select class="form-input selecting" required>
+          <select class="form-input selecting input-job-name" required>
             <!--
             <option value="programming">Programování</option>
             <option value="meetings">Meetingy</option>
@@ -27,14 +31,14 @@
         <div class="form-row">
           <label class="form-label">Od</label>
           <input
-            class="form-input"
+            class="form-input input-from-date-time"
             required
             type="datetime-local"
             name="task-start"
           />
           <label class="form-label">Do</label>
           <input
-            class="form-input"
+            class="form-input input-till-date-time"
             required
             type="datetime-local"
             name="task-end"
@@ -42,24 +46,18 @@
         </div>
 
         <div class="form-row">
-          <label class="form-label">Komentář</label>
-          <textarea class="form-input" required name="comment"></textarea>
-          <label class="form-label"
-            >Přidat možnost <br />k názvu práce <br />
-            (Nepovinné)</label
-          >
-          <input class="form-input" />
           <input
-            class="form-input btn-form-submit btn-add-option"
+            class="form-input btn-form-submit btn-submit-all"
             type="submit"
-            value="Přidat možnost"
+            value="Nahrát data"
           />
         </div>
         <div class="form-row">
+          <label class="form-label">Nová možnost <br />k názvu práce</label>
+          <input class="form-input input-add-option" />
           <input
-            class="form-input btn-form-submit"
-            type="submit"
-            value="Nahrát data"
+            class="form-input btn-form-submit btn-add-option"
+            value="Přidat možnost"
           />
         </div>
       </form>

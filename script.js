@@ -30,8 +30,14 @@ let tableDataStructure = [
   },
 ];
 
+// Storing the required inputs when the Submit button is clicked
+const btnSubmit = document.querySelector(".btn-submit-all");
+btnSubmit.addEventListener("click", () => {
+  console.log("Funguje");
+});
+
 // Options for the select element
-let options = ["Programováni", "Meetingy", "Zahradničení", "Vaření", "Jiné"];
+let options = ["Programování", "Meetingy", "Zahradničení", "Vaření", "Jiné"];
 const loadOptionsData = function (optionsData) {
   let selector = document.querySelector(".selecting");
   let htmlOptionsData = "";
@@ -40,13 +46,25 @@ const loadOptionsData = function (optionsData) {
     htmlOptionsData += `<option>${optionsData[i]}</option>`;
   }
 
-  console.log(selector);
-  console.log(htmlOptionsData);
   selector.innerHTML = htmlOptionsData;
 };
 
 // Add option element to the select menu
 const btnAddOption = document.querySelector(".btn-add-option");
+const inputAddOption = document.querySelector(".input-add-option");
+btnAddOption.addEventListener("click", () => {
+  let optionValue = inputAddOption.value;
+
+  if (optionValue == "") {
+    alert("The input field is empty!");
+  } else if (options.includes(optionValue)) {
+    alert("This option has been already added");
+  } else {
+    options.unshift(optionValue);
+    inputAddOption.value = "";
+    loadOptionsData(options);
+  }
+});
 
 // Function to load the data into the HTML table
 const loadTableData = function (tableData) {
