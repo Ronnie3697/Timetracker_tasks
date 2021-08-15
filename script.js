@@ -103,7 +103,7 @@ const loadTableData = function (tableData) {
 
   for (let data of tableData) {
     htmlData += `<tr>
-    <td><input type="checkbox" id="select" class="checkbox select" /></td>
+    <td class="delete"><button class="btn-delete">Odstranit</button></td>
     <td>${data.poradi}</td>
     <td>${data.nazevPrace}</td>
     <td>${data.druhPrace}</td>
@@ -115,6 +115,8 @@ const loadTableData = function (tableData) {
 
   tableBody.innerHTML = htmlData;
 };
+
+console.log(document.querySelector(".btn-delete"));
 
 /*
 // The Select All Checkbox

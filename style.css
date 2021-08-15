@@ -120,6 +120,25 @@ tr:nth-child(even) td {
   color: white;
 }
 
-.checkbox {
-  transform: scale(1.5);
+.delete {
+  width: 6rem;
+}
+
+.delete-head:hover {
+  background-color: #0984e3;
+  cursor: default;
+}
+
+.btn-delete {
+  border: none;
+  background-color: rgba(245, 80, 80, 0.713);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-delete:hover {
+  background-color: rgb(242, 39, 39);
+  cursor: pointer;
 }
