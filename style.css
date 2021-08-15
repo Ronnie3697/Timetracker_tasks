@@ -17,6 +17,7 @@ header {
 
 header form div {
   display: flex;
+
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -66,6 +67,12 @@ header form div {
 .btn-form-submit:hover {
   background-color: #59abfc;
   cursor: pointer;
+}
+
+.btn-add-option {
+  width: 7rem;
+  height: 2rem;
+  font-size: 0.8rem;
 }
 
 main {

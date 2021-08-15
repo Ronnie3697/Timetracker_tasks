@@ -15,11 +15,13 @@
           <input class="form-input writing" required />
           <label class="form-label">Název práce</label>
           <select class="form-input selecting" required>
+            <!--
             <option value="programming">Programování</option>
             <option value="meetings">Meetingy</option>
             <option value="gardening">Zahradničení</option>
             <option value="cooking">Vaření</option>
             <option value="other">Jiné</option>
+            -->
           </select>
         </div>
         <div class="form-row">
@@ -42,6 +44,16 @@
         <div class="form-row">
           <label class="form-label">Komentář</label>
           <textarea class="form-input" required name="comment"></textarea>
+          <label class="form-label"
+            >Přidat možnost <br />k názvu práce <br />
+            (Nepovinné)</label
+          >
+          <input class="form-input" />
+          <input
+            class="form-input btn-form-submit btn-add-option"
+            type="submit"
+            value="Přidat možnost"
+          />
         </div>
         <div class="form-row">
           <input
@@ -65,7 +77,8 @@
             <th>Délka práce</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="table-data">
+          <!--
           <tr>
             <td>
               <input type="checkbox" id="checkbox" class="checkbox select" />
@@ -88,6 +101,7 @@
             <td>15. 7. 2021 23:48</td>
             <td>31 dní 10 hodin 55 minut</td>
           </tr>
+          -->
         </tbody>
       </table>
       <div class="div-select-all">
