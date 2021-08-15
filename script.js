@@ -9,31 +9,61 @@ window.onload = () => {
 // Sorting the table columns
 
 let sortDirection = false;
+let order = 2;
 
 // The array of objects with the main data
 let tableDataStructure = [
   {
-    poradi: [1],
-    nazevPrace: ["JavaScript"],
-    druhPrace: ["Programovani"],
-    od: ["15. 7. 2021 10:53"],
-    do: ["14. 8. 2021 12:16"],
-    celkemDoba: ["30 dní 22 hodin 15 minut"],
+    poradi: 1,
+    nazevPrace: "JavaScript",
+    druhPrace: "Programovani",
+    od: "15. 7. 2021 10:53",
+    do: "14. 8. 2021 12:16",
+    celkemDoba: "30 dní 22 hodin 15 minut",
   },
   {
-    poradi: [2],
-    nazevPrace: ["Guláš"],
-    druhPrace: ["Vaření"],
-    od: ["1. 3. 2021 9:23"],
-    do: ["5. 3. 2021 18:56"],
-    celkemDoba: ["4 dny 9 hodin 33 minut"],
+    poradi: 2,
+    nazevPrace: "Guláš",
+    druhPrace: "Vaření",
+    od: "1. 3. 2021 9:23",
+    do: "5. 3. 2021 18:56",
+    celkemDoba: "4 dny 9 hodin 33 minut",
   },
 ];
 
 // Storing the required inputs when the Submit button is clicked
 const btnSubmit = document.querySelector(".btn-submit-all");
-btnSubmit.addEventListener("click", () => {
-  console.log("Funguje");
+const inputTaskName = document.querySelector(".input-task-name");
+const inputJobName = document.querySelector(".input-job-name");
+const inputFromDateTime = document.querySelector(".input-from-date-time");
+const inputTillDateTime = document.querySelector(".input-till-date-time");
+
+// Function to get the propper style of Date and Time
+const styledDateTime = function (dateAndTime) {
+  const date = new Date(dateAndTime);
+
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+
+  return `${day}. ${month}. ${year} ${hour}:${minute}`;
+};
+
+btnSubmit.addEventListener("click", (e) => {
+  e.preventDefault();
+  order++;
+  tableDataStructure.push({
+    poradi: order,
+    nazevPrace: inputTaskName.value,
+    druhPrace: inputJobName.value,
+    od: styledDateTime(inputFromDateTime.value),
+    do: styledDateTime(inputTillDateTime.value),
+    celkemDoba: "Zatim nefunguje",
+  });
+
+  loadTableData(tableDataStructure);
 });
 
 // Options for the select element
