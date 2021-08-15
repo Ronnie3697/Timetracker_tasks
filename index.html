@@ -5,28 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <title>Tasks Timetracker</title>
   </head>
   <body>
     <header>
       <form>
-        <label>Název úkolu</label>
-        <input />
-        <label>Název práce</label>
-        <select>
-          <option value="programming">Programování</option>
-          <option value="meetings">Meetingy</option>
-          <option value="gardening">Zahradničení</option>
-          <option value="cooking">Vaření</option>
-          <option value="other">Jiné</option>
-        </select>
-        <label></label>
-        <input type="datetime-local" name="task-start" />
-        <label>Task name</label>
-        <input type="datetime-local" name="task-end" />
-        <label>Komentář</label>
-        <textarea name="comment">The cat was playing in the garden.</textarea>
-        <input type="submit" value="Nahrát data" />
+        <div class="form-row">
+          <label class="form-label">Název úkolu</label>
+          <input class="form-input writing" required />
+          <label class="form-label">Název práce</label>
+          <select class="form-input selecting" required>
+            <option value="programming">Programování</option>
+            <option value="meetings">Meetingy</option>
+            <option value="gardening">Zahradničení</option>
+            <option value="cooking">Vaření</option>
+            <option value="other">Jiné</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Od</label>
+          <input
+            class="form-input"
+            required
+            type="datetime-local"
+            name="task-start"
+          />
+          <label class="form-label">Do</label>
+          <input
+            class="form-input"
+            required
+            type="datetime-local"
+            name="task-end"
+          />
+        </div>
+
+        <div class="form-row">
+          <label class="form-label">Komentář</label>
+          <textarea class="form-input" required name="comment"></textarea>
+        </div>
+        <div class="form-row">
+          <input
+            class="form-input btn-form-submit"
+            type="submit"
+            value="Nahrát data"
+          />
+        </div>
       </form>
     </header>
     <main>
@@ -44,7 +67,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" id="checkbox" class="checkbox" /></td>
             <td>1</td>
             <td>JavaScript</td>
             <td>Programování</td>
@@ -53,7 +76,7 @@
             <td>31 dní 10 hodin 55 minut</td>
           </tr>
           <tr>
-            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" id="checkbox" class="checkbox" /></td>
             <td>2</td>
             <td>Guláš</td>
             <td>Vaření</td>

@@ -8,3 +8,111 @@
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+
+header {
+  padding: 30px 0;
+  margin: 0 auto;
+  width: 100vw;
+  background-color: rgb(243, 243, 243);
+}
+
+header form div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.form-row {
+  margin-top: 30px;
+  padding: 0 10px;
+}
+
+.form-label {
+  margin-right: 15px;
+}
+
+.selecting {
+  background-color: white;
+}
+
+.form-input {
+  margin-right: 25px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 2.2rem;
+  width: 15rem;
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.btn-form-submit {
+  border: none !important;
+  height: 2.5rem;
+  width: 7rem;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #0984e3;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-form-submit:hover {
+  background-color: #59abfc;
+  cursor: pointer;
+}
+
+main {
+  padding-top: 30px;
+}
+
+main table {
+  margin: 0 auto;
+  text-align: center;
+  width: 90%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: auto;
+  border: 1.5px solid #0984e3;
+}
+
+main table thead {
+  background-color: #0984e3;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+th {
+  color: white;
+  padding: 15px 15px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+th:hover {
+  background-color: #59abfc;
+  cursor: pointer;
+}
+
+td {
+  padding: 10px 0;
+}
+
+tr:nth-child(even) {
+  background-color: #59abfc;
+  color: white;
+}
+
+tr:nth-child(even) td {
+  color: white;
+}
+
+.checkbox {
+  transform: scale(1.5);
+}
