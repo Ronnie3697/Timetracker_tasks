@@ -58,14 +58,14 @@ header form div {
   width: 7rem;
   padding: 10px;
   border-radius: 25px;
-  background-color: #0984e3;
+  background-color: #59abfc;
   color: white;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
 }
 
 .btn-form-submit:hover {
-  background-color: #59abfc;
+  background-color: #0984e3;
   cursor: pointer;
 }
 

@@ -41,29 +41,58 @@ const inputTillDateTime = document.querySelector(".input-till-date-time");
 // Function to get the propper style of Date and Time
 const styledDateTime = function (dateAndTime) {
   const date = new Date(dateAndTime);
+  const options = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
+  const locale = navigator.language;
 
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  let hour = date.getHours();
-  let minute = date.getMinutes();
+  return new Intl.DateTimeFormat(locale, options).format(date);
+};
 
-  return `${day}. ${month}. ${year} ${hour}:${minute}`;
+// Function to get a timestamp from a date
+const getTimeStamp = function (date) {
+  return new Date(date).getTime();
+};
+
+const workDuration = function (Tstamp1, Tstamp2) {
+  if (Tstamp2 >= Tstamp1) {
+    let duration = new Date(Tstamp2 - Tstamp1);
+    let hours = Math.floor(duration / (1000 * 60 * 60));
+    let minutes = Math.floor(((duration / (1000 * 60 * 60)) % 1) * 60);
+
+    console.log(hours);
+    console.log(minutes);
+
+    return `${hours} hodin ${minutes} minut`;
+  }
 };
 
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
-  order++;
-  tableDataStructure.push({
-    poradi: order,
-    nazevPrace: inputTaskName.value,
-    druhPrace: inputJobName.value,
-    od: styledDateTime(inputFromDateTime.value),
-    do: styledDateTime(inputTillDateTime.value),
-    celkemDoba: "Zatim nefunguje",
-  });
 
-  loadTableData(tableDataStructure);
+  let timeStampFrom = getTimeStamp(inputFromDateTime.value);
+  let timeStampTill = getTimeStamp(inputTillDateTime.value);
+  if (timeStampFrom > timeStampTill) {
+    alert("Datum 'Do' je dříve než datum 'Od'");
+  } else {
+    order++;
+    tableDataStructure.push({
+      poradi: order,
+      nazevPrace: inputTaskName.value,
+      druhPrace: inputJobName.value,
+      od: styledDateTime(inputFromDateTime.value),
+      do: styledDateTime(inputTillDateTime.value),
+      celkemDoba: workDuration(timeStampFrom, timeStampTill),
+    });
+
+    console.log(getTimeStamp(inputFromDateTime.value));
+
+    loadTableData(tableDataStructure);
+  }
 });
 
 // Options for the select element
@@ -86,9 +115,9 @@ btnAddOption.addEventListener("click", () => {
   let optionValue = inputAddOption.value;
 
   if (optionValue == "") {
-    alert("The input field is empty!");
+    alert("Vstupní hodnota je prázdná!");
   } else if (options.includes(optionValue)) {
-    alert("This option has been already added");
+    alert("Tato možnost již je v nabídce!");
   } else {
     options.unshift(optionValue);
     inputAddOption.value = "";
@@ -116,8 +145,6 @@ const loadTableData = function (tableData) {
   tableBody.innerHTML = htmlData;
 };
 
-console.log(document.querySelector(".btn-delete"));
-
 /*
 // The Select All Checkbox
 const selectAllCheckbox = document.querySelector(".checkbox-select-all");
@@ -138,3 +165,5 @@ selectAllCheckbox.addEventListener("click", () => {
   }
 });
 */
+
+console.log("ahoj");
