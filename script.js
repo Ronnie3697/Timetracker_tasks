@@ -2,29 +2,11 @@
 
 // Data from table table will load after everything else is loaded
 window.onload = () => {
-  loadTableData(tableDataStructure);
   loadOptionsData(options);
 };
 
 // The array of objects with the main data
-let tableDataStructure = [
-  // {
-  //   poradi: 1,
-  //   nazevPrace: "JavaScript",
-  //   druhPrace: "Programovani",
-  //   od: "15. 7. 2021 10:53",
-  //   do: "14. 8. 2021 12:16",
-  //   celkemDoba: "30 dní 22 hodin 15 minut",
-  // },
-  // {
-  //   poradi: 2,
-  //   nazevPrace: "Guláš",
-  //   druhPrace: "Vaření",
-  //   od: "1. 3. 2021 9:23",
-  //   do: "5. 3. 2021 18:56",
-  //   celkemDoba: "4 dny 9 hodin 33 minut",
-  // },
-];
+let tableDataStructure = [];
 
 // Storing the required inputs when the Submit button is clicked
 const btnSubmit = document.querySelector(".btn-submit-all");
@@ -63,7 +45,7 @@ const workDuration = function (Tstamp1, Tstamp2) {
   }
 };
 
-let order = 0;
+let btnDelete;
 
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
@@ -73,9 +55,7 @@ btnSubmit.addEventListener("click", (e) => {
   if (timeStampFrom > timeStampTill) {
     alert("Datum 'Do' je dříve než datum 'Od'");
   } else {
-    order++;
     tableDataStructure.push({
-      poradi: order,
       nazevPrace: inputTaskName.value,
       druhPrace: inputJobName.value,
       datumOd: new Date(inputFromDateTime.value),
@@ -130,7 +110,7 @@ const loadTableData = function (tableData) {
   for (let data of tableData) {
     htmlData += `<tr>
     <td class="delete"><button class="btn-delete">Odstranit</button></td>
-    <td>${data.poradi}</td>
+    
     <td>${data.nazevPrace}</td>
     <td>${data.druhPrace}</td>
     <td>${data.od}</td>
@@ -140,6 +120,16 @@ const loadTableData = function (tableData) {
   }
 
   tableBody.innerHTML = htmlData;
+
+  // Remove a row with a button
+  btnDelete = document.getElementsByClassName("btn-delete");
+  for (let i = 0; i < btnDelete.length; i++) {
+    let button = btnDelete[i];
+    button.addEventListener("click", (e) => {
+      tableDataStructure.splice(i, 1);
+      e.target.parentElement.parentElement.remove();
+    });
+  }
 };
 
 // Sorting the table columns
