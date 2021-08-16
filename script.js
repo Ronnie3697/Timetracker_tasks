@@ -8,22 +8,22 @@ window.onload = () => {
 
 // The array of objects with the main data
 let tableDataStructure = [
-  {
-    poradi: 1,
-    nazevPrace: "JavaScript",
-    druhPrace: "Programovani",
-    od: "15. 7. 2021 10:53",
-    do: "14. 8. 2021 12:16",
-    celkemDoba: "30 dní 22 hodin 15 minut",
-  },
-  {
-    poradi: 2,
-    nazevPrace: "Guláš",
-    druhPrace: "Vaření",
-    od: "1. 3. 2021 9:23",
-    do: "5. 3. 2021 18:56",
-    celkemDoba: "4 dny 9 hodin 33 minut",
-  },
+  // {
+  //   poradi: 1,
+  //   nazevPrace: "JavaScript",
+  //   druhPrace: "Programovani",
+  //   od: "15. 7. 2021 10:53",
+  //   do: "14. 8. 2021 12:16",
+  //   celkemDoba: "30 dní 22 hodin 15 minut",
+  // },
+  // {
+  //   poradi: 2,
+  //   nazevPrace: "Guláš",
+  //   druhPrace: "Vaření",
+  //   od: "1. 3. 2021 9:23",
+  //   do: "5. 3. 2021 18:56",
+  //   celkemDoba: "4 dny 9 hodin 33 minut",
+  // },
 ];
 
 // Storing the required inputs when the Submit button is clicked
@@ -59,14 +59,11 @@ const workDuration = function (Tstamp1, Tstamp2) {
     let hours = Math.floor(duration / (1000 * 60 * 60));
     let minutes = Math.floor(((duration / (1000 * 60 * 60)) % 1) * 60);
 
-    console.log(hours);
-    console.log(minutes);
-
     return `${hours} hodin ${minutes} minut`;
   }
 };
 
-let order = 2;
+let order = 0;
 
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
@@ -81,12 +78,15 @@ btnSubmit.addEventListener("click", (e) => {
       poradi: order,
       nazevPrace: inputTaskName.value,
       druhPrace: inputJobName.value,
+      datumOd: new Date(inputFromDateTime.value),
+      datumDo: new Date(inputTillDateTime.value),
       od: styledDateTime(inputFromDateTime.value),
       do: styledDateTime(inputTillDateTime.value),
       celkemDoba: workDuration(timeStampFrom, timeStampTill),
+      celkemDobaNumber: timeStampTill - timeStampFrom,
     });
 
-    console.log(getTimeStamp(inputFromDateTime.value));
+    inputTaskName.value = "";
 
     loadTableData(tableDataStructure);
   }
@@ -144,45 +144,45 @@ const loadTableData = function (tableData) {
 
 // Sorting the table columns
 
-let sortDirection = false;
-
 function sortNumberColumn(sort, columnName) {
-  tableDataStructure = tableDataStructure.sort((row1, row2) => {
-    return sort
-      ? row1[columnName] - row2[columnName]
-      : row2[columnName] - row1[columnName];
+  tableDataStructure = tableDataStructure.sort((a, b) => {
+    return sort ? a[columnName] - b[columnName] : b[columnName] - a[columnName];
   });
 }
 
+function sortStringColumn(sort, columnName) {
+  tableDataStructure = tableDataStructure.sort((a, b) => {
+    if (sort) {
+      if (a[columnName] < b[columnName]) return 1;
+      if (a[columnName] > b[columnName]) return -1;
+    } else {
+      if (a[columnName] < b[columnName]) return -1;
+      if (a[columnName] > b[columnName]) return 1;
+    }
+  });
+}
+
+let sortDirection = false;
+
 function sortColumn(columnName) {
   const dataType = typeof tableDataStructure[0][columnName];
-  sortDirection = !sortDirection;
 
   switch (dataType) {
     case "number":
+      sortDirection = !sortDirection;
       sortNumberColumn(sortDirection, columnName);
       break;
+    case "string":
+      sortDirection = !sortDirection;
+      sortStringColumn(sortDirection, columnName);
+      break;
+    case "object":
+      sortDirection = !sortDirection;
+      sortStringColumn(sortDirection, columnName);
+      break;
   }
+
+  sortNumberColumn(sortDirection, columnName);
+  sortStringColumn(sortDirection, columnName);
   loadTableData(tableDataStructure);
 }
-
-/*
-// The Select All Checkbox
-const selectAllCheckbox = document.querySelector(".checkbox-select-all");
-const allSelectCheckboxes = document.querySelectorAll("#select");
-
-console.log(selectAllCheckbox);
-console.log(allSelectCheckboxes);
-
-selectAllCheckbox.addEventListener("click", () => {
-  if (selectAllCheckbox.checked == true) {
-    for (let i = 0; i < allSelectCheckboxes.length; i++) {
-      allSelectCheckboxes[i].checked = true;
-    }
-  } else {
-    for (let i = 0; i < allSelectCheckboxes.length; i++) {
-      allSelectCheckboxes[i].checked = false;
-    }
-  }
-});
-*/

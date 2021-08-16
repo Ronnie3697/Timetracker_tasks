@@ -67,12 +67,18 @@
         <thead>
           <tr>
             <th class="delete delete-head"></th>
-            <th onclick="sortColumn('poradi')">Pořadí</th>
-            <th onclick="sortColumn('nazevPrace')">Název práce</th>
-            <th onclick="sortColumn('druhPrace')">Druh práce</th>
-            <th>Od</th>
-            <th>Do</th>
-            <th>Délka práce</th>
+            <th class="sort-column" onclick="sortColumn('poradi')">Pořadí</th>
+            <th class="sort-column" onclick="sortColumn('nazevPrace')">
+              Název práce
+            </th>
+            <th class="sort-column" onclick="sortColumn('druhPrace')">
+              Druh práce
+            </th>
+            <th class="sort-column" onclick="sortColumn('datumOd')">Od</th>
+            <th class="sort-column" onclick="sortColumn('datumDo')">Do</th>
+            <th class="sort-column" onclick="sortColumn('celkemDobaNumber')">
+              Délka práce
+            </th>
           </tr>
         </thead>
         <tbody class="table-data">
