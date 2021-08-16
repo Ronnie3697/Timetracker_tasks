@@ -6,11 +6,6 @@ window.onload = () => {
   loadOptionsData(options);
 };
 
-// Sorting the table columns
-
-let sortDirection = false;
-let order = 2;
-
 // The array of objects with the main data
 let tableDataStructure = [
   {
@@ -70,6 +65,8 @@ const workDuration = function (Tstamp1, Tstamp2) {
     return `${hours} hodin ${minutes} minut`;
   }
 };
+
+let order = 2;
 
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
@@ -145,6 +142,30 @@ const loadTableData = function (tableData) {
   tableBody.innerHTML = htmlData;
 };
 
+// Sorting the table columns
+
+let sortDirection = false;
+
+function sortNumberColumn(sort, columnName) {
+  tableDataStructure = tableDataStructure.sort((row1, row2) => {
+    return sort
+      ? row1[columnName] - row2[columnName]
+      : row2[columnName] - row1[columnName];
+  });
+}
+
+function sortColumn(columnName) {
+  const dataType = typeof tableDataStructure[0][columnName];
+  sortDirection = !sortDirection;
+
+  switch (dataType) {
+    case "number":
+      sortNumberColumn(sortDirection, columnName);
+      break;
+  }
+  loadTableData(tableDataStructure);
+}
+
 /*
 // The Select All Checkbox
 const selectAllCheckbox = document.querySelector(".checkbox-select-all");
@@ -165,5 +186,3 @@ selectAllCheckbox.addEventListener("click", () => {
   }
 });
 */
-
-console.log("ahoj");

@@ -11,13 +11,13 @@
     <header>
       <form>
         <div class="form-row">
-          <label class="form-label">Název úkolu</label>
+          <label class="form-label">Název práce</label>
           <input
             type="text"
             class="form-input writing input-task-name"
             required
           />
-          <label class="form-label">Název práce</label>
+          <label class="form-label">Druh práce</label>
           <select class="form-input selecting input-job-name" required>
             <!--
             <option value="programming">Programování</option>
@@ -53,7 +53,7 @@
           />
         </div>
         <div class="form-row">
-          <label class="form-label">Nová možnost <br />k názvu práce</label>
+          <label class="form-label">Nová možnost <br />k druhu práce</label>
           <input class="form-input input-add-option" />
           <input
             class="form-input btn-form-submit btn-add-option"
@@ -67,9 +67,9 @@
         <thead>
           <tr>
             <th class="delete delete-head"></th>
-            <th>Pořadí</th>
-            <th>Název úkolu</th>
-            <th>Název práce</th>
+            <th onclick="sortColumn('poradi')">Pořadí</th>
+            <th onclick="sortColumn('nazevPrace')">Název práce</th>
+            <th onclick="sortColumn('druhPrace')">Druh práce</th>
             <th>Od</th>
             <th>Do</th>
             <th>Délka práce</th>
